@@ -251,20 +251,19 @@ theme = light:azulejo-brutalism-light,dark:azulejo-brutalism-dark
 
 ### [WezTerm](extras/wezterm/)
 
+Copy the files to `~/.config/wezterm/colors/`, then:
+
 ```lua
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
-local dir = "/path/to/azulejobrutalism.nvim/extras/wezterm/"
 
-config.color_schemes = {
-    ["Azulejo Brutalism Light"] = dofile(dir .. "azulejo-brutalism-light.lua"),
-    ["Azulejo Brutalism Dark"] = dofile(dir .. "azulejo-brutalism-dark.lua"),
-}
 local dark = (wezterm.gui and wezterm.gui.get_appearance() or "Dark"):find("Dark")
 config.color_scheme = dark and "Azulejo Brutalism Dark" or "Azulejo Brutalism Light"
 
 return config
 ```
+
+To skip the copy, point WezTerm at this repo instead: `config.color_scheme_dirs = { "/path/to/azulejobrutalism.nvim/extras/wezterm" }`. The scheme names are `Azulejo Brutalism Light`, `Azulejo Brutalism Dark` and `Azulejo Brutalism OLED`.
 
 With the default fancy tab bar, the strip behind the tabs comes from `config.window_frame.active_titlebar_bg`, not from the scheme.
 
